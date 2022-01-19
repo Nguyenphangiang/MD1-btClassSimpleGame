@@ -14,18 +14,29 @@ class Dogge {
     moveRight(right){
         this.left = right;
     }
+    moveDown(down){
+        this.top = down;
+    }
 }
 let dogge= new Dogge("images.jpg",50,50,200);
-
-let pos = 0;
+let posD = 0;
+let posR = 0;
 let x = 20
+let y = 10
 function start() {
-    if (pos > 1000 || pos < 0) {
+    if (posR > 800 || posR < 0) {
         x = (-x);
     }
-    pos+= x;
-    dogge.moveRight(pos);
+    posR+= x;
+    dogge.moveRight(posR);
     document.getElementById("game").innerHTML=dogge.getDoggeElement()
-    setTimeout(start,150)
+
+    if(posD>400 || posD<0){
+       y= (-y);
+    }
+    posD+=y;
+    dogge.moveDown(posD);
+    document.getElementById("game").innerHTML=dogge.getDoggeElement();
+    setTimeout(start,300)
 }
 start()
