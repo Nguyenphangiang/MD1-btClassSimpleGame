@@ -11,19 +11,21 @@ class Dogge {
             ' src="' + this.image + '"' +
             ' style="top: ' +this.top + 'px;left:'+this.left+'px;position:absolute;"/>';
     }
-    moveRight(){
-        this.left +=20;
-    }
-    moveLeft(){
-        this.left -=20;
+    moveRight(right){
+        this.left = right;
     }
 }
 let dogge= new Dogge("images.jpg",50,50,200);
-function start(){
-    if (dogge.left<1200){
-        dogge.moveRight()
-        document.getElementById("game").innerHTML=dogge.getDoggeElement()
-        setTimeout(start,300);
+
+let pos = 0;
+let x = 20
+function start() {
+    if (pos > 1000 || pos < 0) {
+        x = (-x);
     }
+    pos+= x;
+    dogge.moveRight(pos);
+    document.getElementById("game").innerHTML=dogge.getDoggeElement()
+    setTimeout(start,150)
 }
 start()
